@@ -41,7 +41,6 @@
     .legal{font-size:12px}
     @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
     @media (max-width:600px){.grid{grid-template-columns:1fr}.input{width:54vw}}
-    /* Badge de diagnóstico visible */
     #count-badge{position:fixed;right:12px;bottom:12px;background:#7c3aed;color:#fff;padding:8px 10px;border-radius:12px;font:12px/1.2 system-ui;z-index:9999}
   </style>
 </head>
@@ -56,16 +55,10 @@
   </header>
 
   <main class="container">
-    <!-- HERO -->
     <section class="hero">
       <div class="panel">
         <h1>Bienvenido a Luxeora</h1>
         <p class="muted">Compra los mejores productos de Amazon y AliExpress desde aquí. Cada compra te da acceso a precios increíbles y me genera beneficio como afiliado.</p>
-        <ul class="muted">
-          <li>Productos de moda, electrónica, hogar y más.</li>
-          <li>Botones que llevan directo al marketplace.</li>
-          <li>Tú ganas precio y seguridad; yo gano comisión.</li>
-        </ul>
         <div style="display:flex;gap:8px;margin-top:8px">
           <a class="btn" href="#catalogo">Ver catálogo</a>
           <a class="btn outline" href="#como-funciona">Cómo funciona</a>
@@ -74,7 +67,6 @@
       <div class="panel" style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(0,0,0,.05)), url('https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1600&auto=format&fit=crop') center/cover;height:260px"></div>
     </section>
 
-    <!-- CATÁLOGO -->
     <section id="catalogo" class="panel">
       <h2>Catálogo destacado</h2>
       <div class="filters">
@@ -93,7 +85,6 @@
       <p id="empty" class="muted" style="display:none;text-align:center;margin:24px 0">No hay productos que coincidan con tu búsqueda.</p>
     </section>
 
-    <!-- CÓMO FUNCIONA -->
     <section id="como-funciona" class="panel">
       <h2>Cómo funciona</h2>
       <ol class="muted">
@@ -110,105 +101,23 @@
     </div>
   </footer>
 
-  <!-- ==== SCRIPT (PEGAR TAL CUAL) ==== -->
   <script>
-    // === CONFIG ===
-    const AMAZON_TAG = 'luxeora2025-21';        // tu TAG real
-    const ALI_ID    = 'TU_ID_ALIEXPRESS';       // si usas AliExpress
-
-    // === PRODUCTOS (puedes añadir más) ===
-    const PRODUCTS = [
-      { id:'amz-echo-dot',   name:'Echo Dot (5ª Gen)',                price:59.99, category:'Electrónica', rating:4.6, merchant:'amazon', asin:'B09B8X9RGM', image:'https://m.media-amazon.com/images/I/61g8zR1GJHL._AC_SL1000_.jpg' },
-      { id:'amz-instant-pot',name:'Instant Pot Duo 7-in-1 (5.7 L)',   price:79.99, category:'Hogar',       rating:4.7, merchant:'amazon', asin:'B08Z4HCGDH', image:'https://m.media-amazon.com/images/I/81-+tHUPQ5L._AC_SL1500_.jpg' },
-      { id:'amz-airpods',    name:'Apple AirPods Pro (2ª Gen)',       price:249.00,category:'Electrónica', rating:4.8, merchant:'amazon', asin:'B0BDJH6GL8', image:'https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg' }
+    const AMAZON_TAG='luxeora2025-21', ALI_ID='TU_ID_ALIEXPRESS';
+    const PRODUCTS=[
+      { id:'amz-echo-dot', name:'Echo Dot (5ª Gen)', price:59.99, category:'Electrónica', rating:4.6, merchant:'amazon', asin:'B09B8X9RGM', image:'https://m.media-amazon.com/images/I/61g8zR1GJHL._AC_SL1000_.jpg' },
+      { id:'amz-instant-pot', name:'Instant Pot Duo 7-in-1 (5.7 L)', price:79.99, category:'Hogar', rating:4.7, merchant:'amazon', asin:'B08Z4HCGDH', image:'https://m.media-amazon.com/images/I/81-+tHUPQ5L._AC_SL1500_.jpg' },
+      { id:'amz-airpods', name:'Apple AirPods Pro (2ª Gen)', price:249.00, category:'Electrónica', rating:4.8, merchant:'amazon', asin:'B0BDJH6GL8', image:'https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg' },
+      { id:'amz-case-iphone15', name:'Funda silicona iPhone 15 (kwmobile)', price:7.49, category:'Accesorios móviles', rating:4.5, merchant:'amazon', asin:'B0C9JKG89Z', image:'https://m.media-amazon.com/images/I/61z2t4DRlUL._AC_SL1200_.jpg' },
+      { id:'amz-case-s23-transparent', name:'Funda transparente Samsung Galaxy S23 (Samsung)', price:6.99, category:'Accesorios móviles', rating:4.1, merchant:'amazon', asin:'B0BM4XN1YK', image:'https://m.media-amazon.com/images/I/71pRUoKSt7L._AC_SL1500_.jpg' },
+      { id:'amz-case-s23-ultra-thin', name:'Funda ultrafina Samsung Galaxy S23 (memumi)', price:5.49, category:'Accesorios móviles', rating:3.8, merchant:'amazon', asin:'B0BQR99DYD', image:'https://m.media-amazon.com/images/I/61vjvG8SdgL._AC_SL1500_.jpg' }
     ];
-    { id:'amz-case-iphone15', name:'Funda silicona iPhone 15', price:6.99, category:'Accesorios móviles', rating:4.5, merchant:'amazon', asin:'B0CGB6Z4CF', image:'https://m.media-amazon.com/images/I/61-xxxxx._AC_SL1000_.jpg' },
-{ id:'amz-case-s23', name:'Funda transparente Samsung Galaxy S23', price:5.99, category:'Accesorios móviles', rating:4.6, merchant:'amazon', asin:'B0BXYZ1234', image:'https://m.media-amazon.com/images/I/71-xxxxx._AC_SL1000_.jpg' },
-{ id:'amz-case-xiaomi', name:'Funda antigolpes Xiaomi Redmi Note 12', price:7.49, category:'Accesorios móviles', rating:4.4, merchant:'amazon', asin:'B0CNOTE12X', image:'https://m.media-amazon.com/images/I/81-xxxxx._AC_SL1000_.jpg' },
-{ id:'amz-case-oppo', name:'Funda slim Oppo A78', price:6.50, category:'Accesorios móviles', rating:4.3, merchant:'amazon', asin:'B0COPPOA78', image:'https://m.media-amazon.com/images/I/71-xxxxx._AC_SL1000_.jpg' },
-{ id:'amz-case-huawei', name:'Funda Huawei P60 Lite TPU', price:5.50, category:'Accesorios móviles', rating:4.2, merchant:'amazon', asin:'B0CHUAWEI60', image:'https://m.media-amazon.com/images/I/61-xxxxx._AC_SL1000_.jpg' }
-
-
-    // === HELPERS ===
-    const amazonUrl = asin => `https://www.amazon.es/dp/${asin}?tag=${AMAZON_TAG}`;
-    const aliUrl    = ref  => `https://s.click.aliexpress.com/e/${ref}?aff_short_key=${ALI_ID}`;
-
-    function starRow(r){
-      const full = Math.round(r); let s='';
-      for(let i=1;i<=5;i++) s += `<span aria-hidden="true">${i<=full?'★':'☆'}</span>`;
-      return `<span title="${r.toFixed(1)} / 5">${s} <small class="muted">${r.toFixed(1)}</small></span>`;
-    }
-
-    function card(p){
-      const url = p.merchant==='amazon' ? amazonUrl(p.asin) : aliUrl(p.aliRef);
-      return `
-        <article class="card">
-          <img src="${p.image}" alt="${p.name}">
-          <div class="pad">
-            <div class="row">
-              <h3 style="margin:0;font-size:16px">${p.name}</h3>
-              <div class="price">€${p.price.toFixed(2)}</div>
-            </div>
-            <div class="row" style="margin:6px 0 10px">${starRow(p.rating)}<span class="tag">${p.merchant==='amazon'?'Amazon':'AliExpress'}</span></div>
-            <div class="row">
-              <span class="tag">${p.category}</span>
-              <a class="btn" href="${url}" target="_blank" rel="noopener nofollow">Comprar ▶</a>
-            </div>
-          </div>
-        </article>`;
-    }
-
-    function render(list){
-      const grid = document.getElementById('grid');
-      const empty = document.getElementById('empty');
-      grid.innerHTML = list.map(card).join('');
-      empty.style.display = list.length ? 'none' : 'block';
-
-      // Badge de diagnóstico
-      let badge = document.getElementById('count-badge');
-      if (!badge) {
-        badge = document.createElement('div');
-        badge.id = 'count-badge';
-        document.body.appendChild(badge);
-      }
-      badge.textContent = `Productos: ${list.length}`;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const pills = Array.from(document.querySelectorAll('.pill'));
-      const q = document.getElementById('q');
-      const onlyAmazon = document.getElementById('onlyAmazon');
-      const onlyAli = document.getElementById('onlyAli');
-      const state = { cat:'Todos', q:'', onlyAmazon:false, onlyAli:false };
-
-      function apply(){
-        const list = PRODUCTS.filter(p=>{
-          const catOk = state.cat==='Todos' || p.category===state.cat;
-          const qOk = !state.q || p.name.toLowerCase().includes(state.q.toLowerCase());
-          const mOk = (!state.onlyAmazon && !state.onlyAli) || (state.onlyAmazon && p.merchant==='amazon') || (state.onlyAli && p.merchant==='aliexpress');
-          return catOk && qOk && mOk;
-        });
-        render(list);
-      }
-
-      pills.forEach(el=>{
-        el.addEventListener('click',()=>{
-          pills.forEach(p=>p.classList.remove('active'));
-          el.classList.add('active');
-          state.cat = el.dataset.cat;
-          apply();
-        });
-      });
-      q.addEventListener('input',()=>{ state.q = q.value; apply(); });
-      onlyAmazon && onlyAmazon.addEventListener('change',()=>{ state.onlyAmazon = onlyAmazon.checked; if(onlyAmazon.checked){ onlyAli.checked=false; state.onlyAli=false;} apply(); });
-      onlyAli && onlyAli.addEventListener('change',()=>{ state.onlyAli = onlyAli.checked; if(onlyAli.checked){ onlyAmazon.checked=false; state.onlyAmazon=false;} apply(); });
-
-      apply();
-    });
-
-    // Mostrar cualquier error JS en consola
-    window.addEventListener('error', e => console.error('JS error:', e.message));
+    const amazonUrl=asin=>`https://www.amazon.es/dp/${asin}?tag=${AMAZON_TAG}`;
+    const aliUrl=ref=>`https://s.click.aliexpress.com/e/${ref}?aff_short_key=${ALI_ID}`;
+    function starRow(r){const f=Math.round(r);let s='';for(let i=1;i<=5;i++)s+=`<span aria-hidden="true">${i<=f?'★':'☆'}</span>`;return `<span title="${r.toFixed(1)} / 5">${s} <small class="muted">${r.toFixed(1)}</small></span>`}
+    function card(p){const u=p.merchant==='amazon'?amazonUrl(p.asin):aliUrl(p.aliRef);return `<article class="card"><img src="${p.image}" alt="${p.name}"><div class="pad"><div class="row"><h3 style="margin:0;font-size:16px">${p.name}</h3><div class="price">€${p.price.toFixed(2)}</div></div><div class="row" style="margin:6px 0 10px">${starRow(p.rating)}<span class="tag">${p.merchant==='amazon'?'Amazon':'AliExpress'}</span></div><div class="row"><span class="tag">${p.category}</span><a class="btn" href="${u}" target="_blank" rel="noopener nofollow">Comprar ▶</a></div></div></article>`}
+    function render(list){const g=document.getElementById('grid'),e=document.getElementById('empty');g.innerHTML=list.map(card).join('');e&&(e.style.display=list.length?'none':'block');let b=document.getElementById('count-badge');if(!b){b=document.createElement('div');b.id='count-badge';document.body.appendChild(b)}b.textContent=`Productos: ${list.length}`}
+    document.addEventListener('DOMContentLoaded',()=>{const pills=[...document.querySelectorAll('.pill')],q=document.getElementById('q'),onlyAmazon=document.getElementById('onlyAmazon'),onlyAli=document.getElementById('onlyAli');const state={cat:'Todos',q:'',onlyAmazon:false,onlyAli:false};function apply(){const list=PRODUCTS.filter(p=>{const c=state.cat==='Todos'||p.category===state.cat;const qq=!state.q||p.name.toLowerCase().includes(state.q.toLowerCase());const m=(!state.onlyAmazon&&!state.onlyAli)||(state.onlyAmazon&&p.merchant==='amazon')||(state.onlyAli&&p.merchant==='aliexpress');return c&&qq&&m});render(list)};pills.forEach(el=>el.addEventListener('click',()=>{pills.forEach(p=>p.classList.remove('active'));el.classList.add('active');state.cat=el.dataset.cat;apply()}));q.addEventListener('input',()=>{state.q=q.value;apply()});onlyAmazon&&onlyAmazon.addEventListener('change',()=>{state.onlyAmazon=onlyAmazon.checked;if(onlyAmazon.checked){onlyAli.checked=false;state.onlyAli=false}apply()});onlyAli&&onlyAli.addEventListener('change',()=>{state.onlyAli=onlyAli.checked;if(onlyAli.checked){onlyAmazon.checked=false;state.onlyAmazon=false}apply()});apply()});
+    window.addEventListener('error',e=>console.error('JS error:',e.message));
   </script>
 </body>
 </html>
-
