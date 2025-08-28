@@ -104,15 +104,22 @@
   <script>
     const AMAZON_TAG='luxeora2025-21', ALI_ID='TU_ID_ALIEXPRESS';
     const PRODUCTS=[
+      // Iniciales
       { id:'amz-echo-dot', name:'Echo Dot (5ª Gen)', price:59.99, category:'Electrónica', rating:4.6, merchant:'amazon', asin:'B09B8X9RGM', image:'https://m.media-amazon.com/images/I/61g8zR1GJHL._AC_SL1000_.jpg' },
       { id:'amz-instant-pot', name:'Instant Pot Duo 7-in-1 (5.7 L)', price:79.99, category:'Hogar', rating:4.7, merchant:'amazon', asin:'B08Z4HCGDH', image:'https://m.media-amazon.com/images/I/81-+tHUPQ5L._AC_SL1500_.jpg' },
       { id:'amz-airpods', name:'Apple AirPods Pro (2ª Gen)', price:249.00, category:'Electrónica', rating:4.8, merchant:'amazon', asin:'B0BDJH6GL8', image:'https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg' },
+      // Fundas
       { id:'amz-case-iphone15', name:'Funda silicona iPhone 15 (kwmobile)', price:7.49, category:'Accesorios móviles', rating:4.5, merchant:'amazon', asin:'B0C9JKG89Z', image:'https://m.media-amazon.com/images/I/61z2t4DRlUL._AC_SL1200_.jpg' },
       { id:'amz-case-s23-transparent', name:'Funda transparente Samsung Galaxy S23 (Samsung)', price:6.99, category:'Accesorios móviles', rating:4.1, merchant:'amazon', asin:'B0BM4XN1YK', image:'https://m.media-amazon.com/images/I/71pRUoKSt7L._AC_SL1500_.jpg' },
-      { id:'amz-case-s23-ultra-thin', name:'Funda ultrafina Samsung Galaxy S23 (memumi)', price:5.49, category:'Accesorios móviles', rating:3.8, merchant:'amazon', asin:'B0BQR99DYD', image:'https://m.media-amazon.com/images/I/61vjvG8SdgL._AC_SL1500_.jpg' }
+      { id:'amz-case-s23-ultra-thin', name:'Funda ultrafina Samsung Galaxy S23 (memumi)', price:5.49, category:'Accesorios móviles', rating:3.8, merchant:'amazon', asin:'B0BQR99DYD', image:'https://m.media-amazon.com/images/I/61vjvG8SdgL._AC_SL1500_.jpg' },
+      // Top Ventas
+      { id:'amz-fire-hd', name:'Fire TV Stick HD (2024)', price:39.99, category:'Electrónica', rating:4.7, merchant:'amazon', asin:'B0CQMWQDH4', image:'https://m.media-amazon.com/images/I/51KcTtLZUIL._AC_SL1000_.jpg' },
+      { id:'amz-kitchenaid-artisan', name:'KitchenAid Artisan Stand Mixer', price:449.99, category:'Hogar', rating:4.9, merchant:'amazon', asin:'B00005UP2K', image:'https://m.media-amazon.com/images/I/71+FwGfXW1L._AC_SL1500_.jpg' }
     ];
+
     const amazonUrl=asin=>`https://www.amazon.es/dp/${asin}?tag=${AMAZON_TAG}`;
     const aliUrl=ref=>`https://s.click.aliexpress.com/e/${ref}?aff_short_key=${ALI_ID}`;
+
     function starRow(r){const f=Math.round(r);let s='';for(let i=1;i<=5;i++)s+=`<span aria-hidden="true">${i<=f?'★':'☆'}</span>`;return `<span title="${r.toFixed(1)} / 5">${s} <small class="muted">${r.toFixed(1)}</small></span>`}
     function card(p){const u=p.merchant==='amazon'?amazonUrl(p.asin):aliUrl(p.aliRef);return `<article class="card"><img src="${p.image}" alt="${p.name}"><div class="pad"><div class="row"><h3 style="margin:0;font-size:16px">${p.name}</h3><div class="price">€${p.price.toFixed(2)}</div></div><div class="row" style="margin:6px 0 10px">${starRow(p.rating)}<span class="tag">${p.merchant==='amazon'?'Amazon':'AliExpress'}</span></div><div class="row"><span class="tag">${p.category}</span><a class="btn" href="${u}" target="_blank" rel="noopener nofollow">Comprar ▶</a></div></div></article>`}
     function render(list){const g=document.getElementById('grid'),e=document.getElementById('empty');g.innerHTML=list.map(card).join('');e&&(e.style.display=list.length?'none':'block');let b=document.getElementById('count-badge');if(!b){b=document.createElement('div');b.id='count-badge';document.body.appendChild(b)}b.textContent=`Productos: ${list.length}`}
@@ -121,3 +128,4 @@
   </script>
 </body>
 </html>
+
