@@ -1,3 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diagnóstico Luxeora</title>
+  <style>
+    body{font-family:system-ui,Inter,Arial;margin:0;padding:24px;background:#fafafa;color:#111}
+    .ok{display:inline-block;background:#16a34a;color:#fff;padding:8px 12px;border-radius:8px}
+    #grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+    .card{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
+    .price{font-weight:700;color:#7c3aed}
+    #badge{position:fixed;right:12px;bottom:12px;background:#7c3aed;color:#fff;padding:8px 10px;border-radius:12px;font:12px/1.2 system-ui;z-index:9999}
+  </style>
+</head>
+<body>
+  <h1>✅ Hosting OK — Luxeora</h1>
+  <p class="ok">Si ves esto, GitHub Pages sirve bien el HTML.</p>
+
+  <div id="grid"></div>
+  <div id="badge"></div>
+
+  <script>
+    // Config (tu tag real)
+    const AMAZON_TAG = 'luxeora2025-21';
+
+    // 1 producto de prueba
+    const PRODUCTS = [
+      { id:'amz-echo-dot', name:'Echo Dot (5ª Gen)', price:59.99, category:'Electrónica', rating:4.6, merchant:'amazon', asin:'B09B8X9RGM', image:'https://m.media-amazon.com/images/I/61g8zR1GJHL._AC_SL1000_.jpg' }
+    ];
+
+    function amazonUrl(asin){ return `https://www.amazon.es/dp/${asin}?tag=${AMAZON_TAG}` }
+
+    function card(p){
+      return `<article class="card">
+        <div style="display:flex;gap:10px;align-items:center">
+          <img src="${p.image}" alt="${p.name}" style="width:80px;height:80px;object-fit:cover;border-radius:8px">
+          <div>
+            <div>${p.name}</div>
+            <div class="price">€${p.price.toFixed(2)}</div>
+            <a href="${amazonUrl(p.asin)}" target="_blank" rel="noopener">Comprar ▶</a>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function render(){
+      const grid = document.getElementById('grid');
+      grid.innerHTML = PRODUCTS.map(card).join('');
+      document.getElementById('badge').textContent = `Productos: ${PRODUCTS.length}`;
+      console.log('Rendered', PRODUCTS.length, 'products');
+    }
+
+    // Asegura que el DOM esté listo antes de pintar
+    document.addEventListener('DOMContentLoaded', render);
+
+    // Muestra errores JS en consola
+    window.addEventListener('error', e => console.error('JS error:', e.message));
+  </script>
+</body>
+</html>
 <script>
   // === CONFIG ===
   const AMAZON_TAG = 'luxeora2025-21';
